@@ -1,10 +1,90 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                template="./template.xhtml">
+                template="./template.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="bottom">
-        bottom
+        <h1>Filter Form</h1>
+        <h:form id="filterForm">
+            <h:panelGrid columns="3" cellpadding="10">
+                <p:outputLabel value="#{msg.patientName}" />
+                <p:inputText id="imie" value="#{pacjentBean.pacjent.imie}"
+                             validatorMessage="#{err.rangeRequired}">
+                    <p:ajax update="msgImie" event="keyup" />
+                </p:inputText>
+                <p:message for="imie" id="msgImie" />   
+
+                <p:outputLabel value="#{msg.patientSurname}" />
+                <p:inputText id="nazwisko" value="#{pacjentBean.pacjent.nazwisko}"
+                             validatorMessage="#{err.rangeRequired}">
+                    <p:ajax update="msgNazwisko" event="keyup" />
+                </p:inputText>
+                <p:message for="nazwisko" id="msgNazwisko" />
+
+                <p:outputLabel value="#{msg.patientPesel}" />
+                <p:inputMask mask="99999999999" id="pesel" 
+                             value="#{pacjentBean.pacjent.pesel}" 
+                             validator="#{pacjentBean.checkUniquePesel}">
+                    <p:ajax update="msgPesel" event="keyup" />
+                </p:inputMask>
+                <p:message for="pesel" id="msgPesel" />
+
+                <p:outputLabel value="Data urodzenia od " />
+                <p:calendar id="urOd" value="#{pacjentBean.urOd}" navigator="true"
+                            lang="pl" yearRange="c-100:c+1">                                   
+                    <p:ajax update="msgUrOd" event="dateSelect" />
+                </p:calendar>
+                <p:message for="urOd" id="msgUrOd"/>  
+
+                <p:outputLabel value="Data urodzenia do " />
+                <p:calendar id="urDo" value="#{pacjentBean.urDo}" navigator="true"
+                            lang="pl" yearRange="c-100:c+1">                                   
+                    <p:ajax update="msgUrDo" event="dateSelect" />
+                </p:calendar>
+                <p:message for="urDo" id="msgUrDo"/> 
+
+                <p:outputLabel value="Waga od " />
+                <p:inputText id="wagaOd" />
+                <p:message for="wagaOd" /> 
+
+                <p:outputLabel value="Waga do " />
+                <p:inputText id="wagaDo" />
+                <p:message for="wagaDo" /> 
+
+                <p:outputLabel value="Wzrost od " />
+                <p:inputText id="wzrostOd" />
+                <p:message for="wzrostOd" /> 
+
+                <p:outputLabel value="Wzrost do " />
+                <p:inputText id="wzrostDo" />
+                <p:message for="wzrostDo" /> 
+
+                <p:outputLabel value="Data dodania pacjenta od " />
+                <p:calendar id="dodOd" value="#{pacjentBean.dodOd}" navigator="true"
+                            lang="pl" yearRange="c-100:c+1">                                   
+                    <p:ajax update="msgDodOd" event="dateSelect" />
+                </p:calendar>
+                <p:message for="dodOd" id="msgDodOd"/> 
+
+                <p:outputLabel value="Data dodania pacjenta do " />
+                <p:calendar id="dodDo" value="#{pacjentBean.dodDo}" navigator="true"
+                            lang="pl" yearRange="c-100:c+1">                                   
+                    <p:ajax update="msgDodDo" event="dateSelect" />
+                </p:calendar>
+                <p:message for="dodDo" id="msgDodDo"/> 
+
+                <p:button id="back" value="Powrót" outcome="index.xhtml" />
+                <p:commandButton value="#{msg.formReset}" type="reset" />
+                <p:commandButton value="Filtruj" update="growl" ajax="false"
+                                 action="#{pacjentBean.filtruj()}"
+                                 actionListener="#{pacjentBean.buttonAction}" 
+                                 styleClass="ui-priority-primary" />
+                <p:growl id="growl" life="2000" />
+            </h:panelGrid>
+        </h:form>
     </ui:define>
 
 </ui:composition>

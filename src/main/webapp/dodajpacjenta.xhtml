@@ -7,7 +7,9 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="bottom">
+        <h1>Dodaj pacjenta</h1>
         <h:form>
+            <f:event type="postValidate" listener="#{pacjentBean.compareBirthdatePesel}" />
             <h:panelGrid columns="3" cellpadding="10">
                 <p:outputLabel value="#{msg.patientName}" />
                 <p:inputText id="imie" value="#{pacjentBean.pacjent.imie}" 
@@ -64,9 +66,10 @@
                 <p:inputText id="wzrost" value="#{pacjentBean.pacjent.wzrost}" />
                 <p:message for="wzrost" /> 
 
+                <p:button id="back" value="Powrót" outcome="index.xhtml" />
                 <p:commandButton value="#{msg.formReset}" type="reset" />
                 <p:commandButton value="Dodaj" update="growl" ajax="false"
-                                 action="#{pacjentBean.dodaj()}"
+                                 action="#{pacjentBean.dodaj(pacjentBean.pacjent)}"
                                  actionListener="#{pacjentBean.buttonAction}" 
                                  styleClass="ui-priority-primary" />
                 <p:growl id="growl" life="2000" />

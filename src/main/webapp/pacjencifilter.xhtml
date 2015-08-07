@@ -2,16 +2,16 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
                 template="./template.xhtml"
-                xmlns:h="http://java.sun.com/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:p="http://primefaces.org/ui"
-                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="bottom">
         <h:form>
-            <p:dataTable var="pacjent" value="#{pacjentBean.pacjentList}" style="margin-bottom:40px">
+            <p:dataTable var="pacjent" value="#{pacjentBean.filterList}" style="margin-bottom:40px">
                 <f:facet name="header">
-                    Pacjenci
+                    Pacjenci Filter
                 </f:facet>
                 <p:column headerText="#{msg.patientDateAdded}" sortBy="#{pacjent.dataDod}" 
                           filterBy="#{pacjent.dataDod}" filterMatchMode="contains">
@@ -42,7 +42,6 @@
             <p:commandButton value="Odśwież" ajax="false"
                              action="#{pacjentBean.odswiez()}" 
                              styleClass="ui-priority-primary" />
-            <p:button id="filtruj" value="Filtruj" outcome="filterForm.xhtml" />
         </h:form>
     </ui:define>
 

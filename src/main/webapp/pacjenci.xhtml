@@ -38,6 +38,7 @@
                     <h:outputText value="#{pacjent.wzrost}" />
                 </p:column>
             </p:dataTable>
+            <p:button id="back" value="Powrót" outcome="index.xhtml" />
             <p:commandButton value="Odśwież" ajax="false"
                              action="#{pacjentBean.odswiez()}" 
                              styleClass="ui-priority-primary" />

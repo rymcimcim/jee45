@@ -14,24 +14,16 @@ public class CRUDRunner {
 
     private static Pacjent pacjent;
     private static List pacjentList;
-    private static List filterList;
 
-    public static void create(String imie, String nazwisko, String pesel,
-            Date data, String adres, String telefon, float waga, float wzrost) {
-        pacjent = null;
+    public static void create(Pacjent mPacjent) {
+        pacjent = mPacjent;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            pacjent = new Pacjent();
-            pacjent.setImie(imie);
-            pacjent.setNazwisko(nazwisko);
-            pacjent.setPesel(pesel);
-            pacjent.setData(data);
-            pacjent.setAdres(adres);
-            pacjent.setTelefon(telefon);
-            pacjent.setWaga(waga);
-            pacjent.setWzrost(wzrost);
+            pacjent.setId(null);
+            Date now = new Date();
+            pacjent.setDataDod(now);
             session.save(pacjent);
             tx.commit();
         } catch (HibernateException e) {
@@ -84,37 +76,49 @@ public class CRUDRunner {
     }
 
     public static List filterRetrive(String imie, String nazwisko, String pesel,
-            Date urOd, Date urDo, int wagaOd, int wagaDo, int wzrostOd, int wzrostDo,
+            Date urOd, Date urDo, float wagaOd, float wagaDo, float wzrostOd, float wzrostDo,
             Date dodOd, Date dodDo) {
-        filterList = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
+        List list = null;
         try {
             tx = session.beginTransaction();
             Criteria criteria = session.createCriteria(Pacjent.class);
-            if (imie != null)
+            if (imie != null && !imie.isEmpty()) {
                 criteria.add(Restrictions.eq("imie", imie));
-            if (nazwisko != null)
+            }
+            if (nazwisko != null && !nazwisko.isEmpty()) {
                 criteria.add(Restrictions.eq("nazwisko", nazwisko));
-            if (pesel != null)
+            }
+            if (pesel != null && !pesel.isEmpty()) {
                 criteria.add(Restrictions.eq("pesel", pesel));
-            if (urOd != null)
-                criteria.add(Restrictions.ge("data", urOd.toString()));
-            if (urDo != null)
-                criteria.add(Restrictions.le("data", urDo.toString()));
-            if (wagaOd > 0)
+            }
+            if (urOd != null) {
+                criteria.add(Restrictions.ge("data", urOd));
+            }
+            if (urDo != null) {
+                criteria.add(Restrictions.le("data", urDo));
+            }
+            if (wagaOd > 0) {
                 criteria.add(Restrictions.ge("waga", wagaOd));
-            if (wagaDo > 0)
+            }
+            if (wagaDo > 0) {
                 criteria.add(Restrictions.le("waga", wagaDo));
-            if (wzrostOd > 0)
-                criteria.add(Restrictions.gt("wzrost", wzrostOd));
-            if (wzrostDo > 0)
-                criteria.add(Restrictions.gt("wzrost", wzrostDo));
-            if (dodOd != null)
-                criteria.add(Restrictions.ge("dataDod", dodOd.toString()));
-            if (dodDo != null)
-                criteria.add(Restrictions.le("dataDod", dodDo.toString()));
-            filterList = criteria.list();
+            }
+            if (wzrostOd > 0) {
+                criteria.add(Restrictions.ge("wzrost", wzrostOd));
+            }
+            if (wzrostDo > 0) {
+                criteria.add(Restrictions.le("wzrost", wzrostDo));
+            }
+            if (dodOd != null) {
+                criteria.add(Restrictions.ge("dataDod", dodOd));
+            }
+            if (dodDo != null) {
+                criteria.add(Restrictions.le("dataDod", dodDo));
+            }
+            list = criteria.list();
+            tx.commit();
         } catch (HibernateException e) {
             if (tx != null) {
                 tx.rollback();
@@ -122,7 +126,7 @@ public class CRUDRunner {
         } finally {
             session.close();
         }
-        return filterList;
+        return list;
     }
 
     /*public static Address getAddress(int id) {
