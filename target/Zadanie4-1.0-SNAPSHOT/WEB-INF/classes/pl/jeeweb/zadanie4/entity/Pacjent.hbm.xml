@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-08-05 11:19:06 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pl.jeeweb.zadanie4.entity.Pacjent" table="pacjent" catalog="test2" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="imie" type="string">
+            <column name="imie" length="45" not-null="true" />
+        </property>
+        <property name="nazwisko" type="string">
+            <column name="nazwisko" length="60" not-null="true" />
+        </property>
+        <property name="pesel" type="string">
+            <column name="pesel" length="11" not-null="true" />
+        </property>
+        <property name="data" type="date">
+            <column name="data" length="10" not-null="true" />
+        </property>
+        <property name="adres" type="string">
+            <column name="adres" length="150" not-null="true" />
+        </property>
+        <property name="telefon" type="string">
+            <column name="telefon" length="20" not-null="true" />
+        </property>
+        <property name="waga" type="float">
+            <column name="waga" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="wzrost" type="float">
+            <column name="wzrost" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="dataDod" type="date">
+            <column name="dataDod" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<faces-config version="2.2"
+              xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+    <managed-bean>
+        <managed-bean-name>pacjentBean</managed-bean-name>
+        <managed-bean-class>pl.jeeweb.zadanie4.controllers.PacjentBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <validator>
+        <validator-id>peselValidator</validator-id>
+        <validator-class>pl.jeeweb.zadanie4.controllers.PeselValidator</validator-class>
+    </validator>
+    <application>
+        <resource-bundle>
+            <base-name>messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+
+        <resource-bundle>
+            <base-name>errormessages</base-name>
+            <var>err</var>
+        </resource-bundle>
+
+        <locale-config>
+            <default-locale>pl</default-locale>
+            <supported-locale>pl</supported-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+
+    </application>
+</faces-config>

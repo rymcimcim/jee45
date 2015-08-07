@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:define name="bottom">
+        <h:form>
+            <p:dataTable var="pacjent" value="#{pacjentBean.pacjentList}" style="margin-bottom:40px">
+                <f:facet name="header">
+                    Pacjenci
+                </f:facet>
+                <p:column headerText="#{msg.patientDateAdded}" sortBy="#{pacjent.dataDod}" 
+                          filterBy="#{pacjent.dataDod}" filterMatchMode="contains">
+                    <h:outputText value="#{pacjent.dataDod}" />
+                </p:column>
+                <p:column headerText="#{msg.patientName}" sortBy="#{pacjent.imie}" 
+                          filterBy="#{pacjent.imie}" filterMatchMode="contains">
+                    <h:outputText value="#{pacjent.imie}" />
+                </p:column>
+                <p:column headerText="#{msg.patientSurname}" sortBy="#{pacjent.nazwisko}"
+                          filterBy="#{pacjent.nazwisko}" filterMatchMode="contains">
+                    <h:outputText value="#{pacjent.nazwisko}" />
+                </p:column>
+                <p:column headerText="#{msg.patientPesel}" sortBy="#{pacjent.pesel}"
+                          filterBy="#{pacjent.pesel}" filterMatchMode="contains">
+                    <h:outputText value="#{pacjent.pesel}" />
+                </p:column>
+                <p:column headerText="#{msg.patientWeight}" sortBy="#{pacjent.waga}"
+                          filterBy="#{pacjent.waga}" filterMatchMode="contains">
+                    <h:outputText value="#{pacjent.waga}" />
+                </p:column>
+                <p:column headerText="#{msg.patientHeight}" sortBy="#{pacjent.wzrost}"
+                          filterBy="#{pacjent.wzrost}" filterMatchMode="contains">
+                    <h:outputText value="#{pacjent.wzrost}" />
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="Odśwież" ajax="false"
+                             action="#{pacjentBean.odswiez()}" 
+                             styleClass="ui-priority-primary" />
+            <p:button id="filtruj" value="Filtruj" outcome="filterForm.xhtml" />
+        </h:form>
+    </ui:define>
+
+</ui:composition>

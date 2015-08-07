@@ -1,0 +1,5 @@
+/home/jedrzej/NetBeansProjects/Zadanie4/src/main/java/pl/jeeweb/zadanie4/controllers/PacjentBean.java
+/home/jedrzej/NetBeansProjects/Zadanie4/src/main/java/pl/jeeweb/zadanie4/controllers/PeselValidator.java
+/home/jedrzej/NetBeansProjects/Zadanie4/src/main/java/pl/jeeweb/zadanie4/util/HibernateUtil.java
+/home/jedrzej/NetBeansProjects/Zadanie4/src/main/java/pl/jeeweb/zadanie4/entity/Pacjent.java
+/home/jedrzej/NetBeansProjects/Zadanie4/src/main/java/pl/jeeweb/zadanie4/util/CRUDRunner.java

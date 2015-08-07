@@ -1,0 +1,5 @@
+pl/jeeweb/zadanie4/entity/Pacjent.class
+pl/jeeweb/zadanie4/util/HibernateUtil.class
+pl/jeeweb/zadanie4/controllers/PacjentBean.class
+pl/jeeweb/zadanie4/util/CRUDRunner.class
+pl/jeeweb/zadanie4/controllers/PeselValidator.class
