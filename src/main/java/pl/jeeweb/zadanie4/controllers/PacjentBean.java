@@ -13,19 +13,15 @@ import javax.faces.event.ActionEvent;
 import javax.faces.event.ComponentSystemEvent;
 import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletRequest;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 import pl.jeeweb.zadanie4.entity.Pacjent;
 import pl.jeeweb.zadanie4.util.CRUDRunner;
-import pl.jeeweb.zadanie4.util.HibernateUtil;
 
 public class PacjentBean implements java.io.Serializable {
 
     private Pacjent pacjent = new Pacjent();
     private List filterList;
     private List pacjentList;
-    private String imie, nazwisko, pesel;
+    private String imie, nazwisko, pesel, birthdate;
     private float wzrostOd = 0F, wzrostDo = 0F, wagaOd = 0F, wagaDo = 0F;
     private Date urOd = null, urDo = null, dodOd = null, dodDo = null;
 
@@ -120,7 +116,7 @@ public class PacjentBean implements java.io.Serializable {
             UIInput UIbirthDate = (UIInput) form.findComponent("date");
             UIInput UIpesel = (UIInput) form.findComponent("pesel");
 
-            String birthdate = UIbirthDate.getValue().toString().substring(27, 29);
+            birthdate = UIbirthDate.getValue().toString().substring(26, 28);
             pesel = UIpesel.getValue().toString().substring(0, 2);
 
             if (!birthdate.equals(pesel)) {

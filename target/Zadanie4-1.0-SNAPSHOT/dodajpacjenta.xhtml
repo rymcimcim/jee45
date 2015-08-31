@@ -8,72 +8,73 @@
 
     <ui:define name="bottom">
         <h1>Dodaj pacjenta</h1>
-        <h:form>
-            <f:event type="postValidate" listener="#{pacjentBean.compareBirthdatePesel}" />
-            <h:panelGrid columns="3" cellpadding="10">
-                <p:outputLabel value="#{msg.patientName}" />
-                <p:inputText id="imie" value="#{pacjentBean.pacjent.imie}" 
-                             required="true" requiredMessage="#{err.fieldRequired}"
-                             validatorMessage="#{err.rangeRequired}">
-                    <f:validateLength minimum="2" maximum="50" />
-                    <p:ajax update="msgImie" event="keyup" />
-                </p:inputText>
-                <p:message for="imie" id="msgImie" />   
+        <h:form id="form">
+            <p:panel id="panel" header="Form" style="margin-bottom:10px;">
+                <f:event type="postValidate" listener="#{pacjentBean.compareBirthdatePesel}" />
+                <h:panelGrid columns="3" cellpadding="10">
+                    <p:outputLabel value="#{msg.patientName}" />
+                    <p:inputText id="imie" value="#{pacjentBean.pacjent.imie}" 
+                                 required="true" requiredMessage="#{err.fieldRequired}"
+                                 validatorMessage="#{err.rangeRequired}">
+                        <f:validateLength minimum="2" maximum="50" />
+                        <p:ajax update="msgImie" event="keyup" />
+                    </p:inputText>
+                    <p:message for="imie" id="msgImie" />   
 
-                <p:outputLabel value="#{msg.patientSurname}" />
-                <p:inputText id="nazwisko" value="#{pacjentBean.pacjent.nazwisko}" 
-                             required="true" requiredMessage="#{err.fieldRequired}"
-                             validatorMessage="#{err.rangeRequired}">
-                    <f:validateLength minimum="2" maximum="50" />
-                    <p:ajax update="msgNazwisko" event="keyup" />
-                </p:inputText>
-                <p:message for="nazwisko" id="msgNazwisko" />
+                    <p:outputLabel value="#{msg.patientSurname}" />
+                    <p:inputText id="nazwisko" value="#{pacjentBean.pacjent.nazwisko}" 
+                                 required="true" requiredMessage="#{err.fieldRequired}"
+                                 validatorMessage="#{err.rangeRequired}">
+                        <f:validateLength minimum="2" maximum="50" />
+                        <p:ajax update="msgNazwisko" event="keyup" />
+                    </p:inputText>
+                    <p:message for="nazwisko" id="msgNazwisko" />
 
-                <p:outputLabel value="#{msg.patientPesel}" />
-                <p:inputMask mask="99999999999" id="pesel" value="#{pacjentBean.pacjent.pesel}" 
-                             required="true" requiredMessage="#{err.fieldRequired}"
-                             validator="#{pacjentBean.checkUniquePesel}">
-                    <f:validator validatorId="peselValidator" />
-                    <p:ajax update="msgPesel" event="keyup" />
-                </p:inputMask>
-                <p:message for="pesel" id="msgPesel" />
+                    <p:outputLabel value="#{msg.patientPesel}" />
+                    <p:inputMask mask="99999999999" id="pesel" value="#{pacjentBean.pacjent.pesel}" 
+                                 required="true" requiredMessage="#{err.fieldRequired}"
+                                 validator="#{pacjentBean.checkUniquePesel}">
+                        <f:validator validatorId="peselValidator" />
+                        <p:ajax update="msgPesel" event="keyup" />
+                    </p:inputMask>
+                    <p:message for="pesel" id="msgPesel" />
 
-                <p:outputLabel value="#{msg.patientBirthdate}" />
-                <p:calendar id="date" value="#{pacjentBean.pacjent.data}"
-                            validator="#{pacjentBean.dateValidator}" required="true" 
-                            requiredMessage="#{err.fieldRequired}" navigator="true"
-                            lang="pl" yearRange="c-100:c+1">                                   
-                    <p:ajax update="msgDate" event="dateSelect" />
-                </p:calendar>                    
-                <p:message for="date" id="msgDate" /> 
+                    <p:outputLabel value="#{msg.patientBirthdate}" />
+                    <p:calendar id="date" value="#{pacjentBean.pacjent.data}"
+                                validator="#{pacjentBean.dateValidator}" required="true" 
+                                requiredMessage="#{err.fieldRequired}" navigator="true"
+                                lang="pl" yearRange="c-100:c+1">                                   
+                        <p:ajax update="msgDate" event="dateSelect" />
+                    </p:calendar>                    
+                    <p:message for="date" id="msgDate" /> 
 
-                <p:outputLabel value="#{msg.patientAddress}" />
-                <p:inputTextarea rows="2" cols="25" id="adres" value="#{pacjentBean.pacjent.adres}" 
-                                 required="true" requiredMessage="#{err.fieldRequired}">
-                    <p:ajax update="msgAdres" event="keyup" />
-                </p:inputTextarea>
-                <p:message for="adres" id="msgAdres" /> 
+                    <p:outputLabel value="#{msg.patientAddress}" />
+                    <p:inputTextarea rows="2" cols="25" id="adres" value="#{pacjentBean.pacjent.adres}" 
+                                     required="true" requiredMessage="#{err.fieldRequired}">
+                        <p:ajax update="msgAdres" event="keyup" />
+                    </p:inputTextarea>
+                    <p:message for="adres" id="msgAdres" /> 
 
-                <p:outputLabel value="#{msg.patientPhoneNumber}" />
-                <p:inputMask mask="999-999-999" id="telefon" value="#{pacjentBean.pacjent.telefon}" />
-                <p:message for="telefon" /> 
+                    <p:outputLabel value="#{msg.patientPhoneNumber}" />
+                    <p:inputMask mask="999-999-999" id="telefon" value="#{pacjentBean.pacjent.telefon}" />
+                    <p:message for="telefon" /> 
 
-                <p:outputLabel value="#{msg.patientWeight}" />
-                <p:inputText id="waga" value="#{pacjentBean.pacjent.waga}" />
-                <p:message for="waga" /> 
+                    <p:outputLabel value="#{msg.patientWeight}" />
+                    <p:inputText id="waga" value="#{pacjentBean.pacjent.waga}" />
+                    <p:message for="waga" /> 
 
-                <p:outputLabel value="#{msg.patientHeight}" />
-                <p:inputText id="wzrost" value="#{pacjentBean.pacjent.wzrost}" />
-                <p:message for="wzrost" /> 
+                    <p:outputLabel value="#{msg.patientHeight}" />
+                    <p:inputText id="wzrost" value="#{pacjentBean.pacjent.wzrost}" />
+                    <p:message for="wzrost" /> 
 
-                <p:button id="back" value="Powrót" outcome="index.xhtml" />
-                <p:commandButton value="#{msg.formReset}" type="reset" />
-                <p:commandButton value="Dodaj" update="growl" ajax="false"
-                                 action="#{pacjentBean.dodaj(pacjentBean.pacjent)}"
-                                 actionListener="#{pacjentBean.buttonAction}" 
-                                 styleClass="ui-priority-primary" />
-                <p:growl id="growl" life="2000" />
-            </h:panelGrid>
+                    <p:button id="back" value="Powrót" outcome="index.xhtml" />
+                    <p:commandButton value="Dodaj" update="growl" ajax="false"
+                                     action="#{pacjentBean.dodaj(pacjentBean.pacjent)}"
+                                     actionListener="#{pacjentBean.buttonAction}" 
+                                     styleClass="ui-priority-primary" />
+                    <p:growl id="growl" life="2000" />
+                </h:panelGrid>
+            </p:panel>
         </h:form>
     </ui:define>
 
